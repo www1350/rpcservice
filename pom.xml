@@ -23,6 +23,7 @@
         <motan.version>0.2.2</motan.version>
         <grpc.version>1.0.1</grpc.version>
         <dubbo.version>2.5.3</dubbo.version>
+        <dubbox.version>2.8.4</dubbox.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
     </properties>
@@ -78,6 +79,7 @@
         <version>20.0</version>
     </dependency>
 
+        <!-- motan -->
         <dependency>
             <groupId>com.weibo</groupId>
             <artifactId>motan-core</artifactId>
@@ -95,7 +97,9 @@
             <artifactId>motan-springsupport</artifactId>
             <version>${motan.version}</version>
         </dependency>
+        <!-- motan END  -->
 
+        <!-- Grpc -->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty</artifactId>
@@ -111,17 +115,11 @@
             <artifactId>grpc-stub</artifactId>
             <version>${grpc.version}</version>
         </dependency>
-
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>
+        <!-- Grpc END -->
 
     </dependencies>
     </dependencyManagement>
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>opensesame.releases</id>
             <url>
@@ -134,5 +132,5 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>-->
 </project>
