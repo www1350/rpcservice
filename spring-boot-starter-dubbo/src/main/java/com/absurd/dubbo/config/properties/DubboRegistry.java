@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by wangwenwei on 17/1/4.
  */
-@ConfigurationProperties(prefix = "dubbo.registry",locations = "classpath:dubbo.properties")
+@ConfigurationProperties(prefix = "dubbo.registry")
 public class DubboRegistry {
 
     /**

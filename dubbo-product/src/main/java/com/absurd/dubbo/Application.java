@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * Created by wangwenwei on 17/1/4.
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.absurd")
 @SpringBootApplication
 //@EnableAutoConfiguration
+@PropertySource("dubbo.properties")
 public class Application extends SpringBootServletInitializer {
 
     @Override

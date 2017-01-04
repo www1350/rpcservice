@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by wangwenwei on 17/1/4.
  */
-@ConfigurationProperties(prefix = "dubbo.application",locations = "classpath:dubbo.properties")
+@ConfigurationProperties(prefix = "dubbo.application")
 public class DubboApplication {
 
     private String name = "sample";

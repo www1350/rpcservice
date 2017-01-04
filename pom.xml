@@ -10,9 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>motan</module>
-        <module>dubbo</module>
         <module>dubbox</module>
         <module>grpc</module>
+        <module>dubbo-product</module>
+        <module>spring-boot-starter-dubbo</module>
+        <module>dubbo-api</module>
+        <module>dubbo-consume</module>
     </modules>
 
     <parent>

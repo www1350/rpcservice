@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by wangwenwei on 17/1/4.
  */
-@ConfigurationProperties(prefix = "dubbo.protocol",locations = "classpath:dubbo.properties")
+@ConfigurationProperties(prefix = "dubbo.protocol")
 public class DubboProtocol {
 
     /**

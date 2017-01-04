@@ -33,7 +33,6 @@ import org.springframework.context.annotation.PropertySource;
                 DubboProvider.class
         }
 )
-@PropertySource("dubbo.properties")
 public class DubboAutoConfiguration {
     private static  Logger logger = LoggerFactory.getLogger(DubboAutoConfiguration.class);
 
