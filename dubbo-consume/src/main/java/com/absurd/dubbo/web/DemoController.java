@@ -2,7 +2,11 @@ package com.absurd.dubbo.web;
 
 import com.absurd.dubbo.api.DemoService;
 import com.absurd.dubbo.api.dto.UserDTO;
+import com.absurd.dubbo.config.DubboAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Reference;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/demo")
 public class DemoController {
+    private static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    @Reference(version = "1.0.0",group = "demo1")
+    @Reference(version = "1.0.0",group = "demo1" ,async=true,sent = true)
     private DemoService demo1Service;
 
-    @Reference(version = "1.0.0",group = "demo2")
+    @Reference(version = "1.0.0",group = "demo2" )
     private DemoService demo2Service;
 
     @RequestMapping(value={"hello/{user}"})

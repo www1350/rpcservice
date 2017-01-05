@@ -4,6 +4,8 @@ import com.absurd.dubbo.api.DemoService;
 import com.absurd.dubbo.api.dto.UserDTO;
 import com.alibaba.dubbo.config.annotation.Service;
 
+import java.util.concurrent.Future;
+
 /**
  * Created by wangwenwei
  * @date 2017/1/5 12:17
@@ -22,5 +24,10 @@ public class DemoTwServiceImpl implements DemoService{
         userDTO.setUserName("www2");
         userDTO.setPassword("fsf#@#FDS");
         return userDTO;
+    }
+
+    @Override
+    public Future<UserDTO> asyncUser(Long id) {
+        return null;
     }
 }
