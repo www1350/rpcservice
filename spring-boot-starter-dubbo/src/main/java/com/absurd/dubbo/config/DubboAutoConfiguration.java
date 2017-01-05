@@ -71,6 +71,12 @@ public class DubboAutoConfiguration {
         ProtocolConfig protocolConfig = new ProtocolConfig();
         protocolConfig.setName(dubboProtocol.getName());
         protocolConfig.setPort(dubboProtocol.getPort());
+        protocolConfig.setServer(dubboProtocol.getServer());
+        protocolConfig.setSerialization(dubboProtocol.getSerialization());
+        protocolConfig.setDispatcher(dubboProtocol.getDispatcher());
+        protocolConfig.setThreadpool(dubboProtocol.getThreadpool());
+        protocolConfig.setThreads(dubboProtocol.getThreads());
+        protocolConfig.setCharset(dubboProtocol.getCharset());
         protocolConfig.setAccesslog(String.valueOf(dubboProtocol.isAccessLog()));
         logger.info("[DubboAutoConfiguration] {}", dubboProtocol);
         return protocolConfig;
@@ -84,6 +90,8 @@ public class DubboAutoConfiguration {
         providerConfig.setTimeout(dubboProvider.getTimeout());
         providerConfig.setRetries(dubboProvider.getRetries());
         providerConfig.setDelay(dubboProvider.getDelay());
+        providerConfig.setCluster(dubboProvider.getCluster());
+        providerConfig.setLoadbalance(dubboProvider.getLoadbalance());
         providerConfig.setApplication(applicationConfig);
         providerConfig.setRegistry(registryConfig);
         providerConfig.setProtocol(protocolConfig);

@@ -1,6 +1,7 @@
 package com.absurd.dubbo.web;
 
 import com.absurd.dubbo.api.DemoService;
+import com.absurd.dubbo.api.dto.UserDTO;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,12 @@ public class DemoController {
     @ResponseBody
     public String hello(@PathVariable String user){
         return demoService.sayHello(user);
+    }
+
+    @RequestMapping(value={"user/{id}"})
+    @ResponseBody
+    public UserDTO getUser(@PathVariable Long id){
+        return demoService.getUser(id);
     }
 
 }
