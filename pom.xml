@@ -10,13 +10,15 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>motan</module>
-        <module>dubbox</module>
         <module>grpc</module>
         <module>dubbo-product</module>
         <module>spring-boot-starter-dubbo</module>
         <module>dubbo-api</module>
         <module>dubbo-consume</module>
         <module>spring-boot-starter-dubbox</module>
+        <module>spring-boot-starter-motan</module>
+        <module>motan-product</module>
+        <module>motan-consume</module>
     </modules>
 
     <parent>
@@ -98,6 +100,12 @@
         <dependency>
             <groupId>com.weibo</groupId>
             <artifactId>motan-transport-netty</artifactId>
+            <version>${motan.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-registry-zookeeper</artifactId>
             <version>${motan.version}</version>
         </dependency>
 
