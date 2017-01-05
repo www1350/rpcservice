@@ -4,6 +4,7 @@ import com.absurd.dubbo.api.DemoService;
 import com.absurd.dubbo.api.dto.UserDTO;
 import com.absurd.dubbo.config.DubboAutoConfiguration;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.rpc.RpcContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by wangwenwei on 17/1/5.
@@ -23,7 +29,7 @@ public class DemoController {
     @Reference(version = "1.0.0",group = "demo1" ,async=true,sent = true)
     private DemoService demo1Service;
 
-    @Reference(version = "1.0.0",group = "demo2" )
+    @Reference(version = "1.0.0",group = "demo1,demo2" )
     private DemoService demo2Service;
 
     @RequestMapping(value={"hello/{user}"})
@@ -35,7 +41,24 @@ public class DemoController {
     @RequestMapping(value={"user/{id}"})
     @ResponseBody
     public UserDTO getUser(@PathVariable Long id){
-        return demo1Service.getUser(id);
+        UserDTO userDTO = demo1Service.getUser(id);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        Future<UserDTO> future = RpcContext.getContext().getFuture();
+        executorService.submit(()->{
+            try {
+                UserDTO  userDTO1 = future.get();
+                logger.info(">>>>>>>>>>>>>>>>>>>>"+userDTO1.getUserName());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+        });
+        executorService.shutdown();
+
+
+        return userDTO;
     }
 
 
