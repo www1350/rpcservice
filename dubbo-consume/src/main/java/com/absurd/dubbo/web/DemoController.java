@@ -15,18 +15,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/demo")
 public class DemoController {
 
-    @Reference(version = "1.0.0")
-    private DemoService demoService;
+    @Reference(version = "1.0.0",group = "demo1")
+    private DemoService demo1Service;
+
+    @Reference(version = "1.0.0",group = "demo2")
+    private DemoService demo2Service;
+
     @RequestMapping(value={"hello/{user}"})
     @ResponseBody
     public String hello(@PathVariable String user){
-        return demoService.sayHello(user);
+        return demo1Service.sayHello(user);
     }
 
     @RequestMapping(value={"user/{id}"})
     @ResponseBody
     public UserDTO getUser(@PathVariable Long id){
-        return demoService.getUser(id);
+        return demo1Service.getUser(id);
+    }
+
+
+    @RequestMapping(value={"hello2/{user}"})
+    @ResponseBody
+    public String hello2(@PathVariable String user){
+        return demo2Service.sayHello(user);
+    }
+
+    @RequestMapping(value={"user2/{id}"})
+    @ResponseBody
+    public UserDTO getUser2(@PathVariable Long id){
+        return demo2Service.getUser(id);
     }
 
 }
