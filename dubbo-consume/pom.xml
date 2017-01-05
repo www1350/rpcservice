@@ -64,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>com.absurd</groupId>
-            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <artifactId>spring-boot-starter-dubbox</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
