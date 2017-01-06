@@ -32,8 +32,8 @@ public class MotanRegistry {
      */
     private boolean subscribe = true;
 
-    private Integer requestTimeout;
-    private Integer connectTimeout;
+    private Integer requestTimeout = 1000;
+    private Integer connectTimeout = 5000;
     private Integer registrySessionTimeout;
     private Integer registryRetryPeriod;
 

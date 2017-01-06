@@ -94,6 +94,7 @@ public class MotanAutoConfiguration {
         config.setRegProtocol(motanRegistry.getRegProtocol());// 采用zookeeper注册中心
         config.setName(motanRegistry.getName());
         config.setRequestTimeout(motanRegistry.getRequestTimeout());
+        config.setConnectTimeout(motanRegistry.getConnectTimeout());
         config.setAddress(motanRegistry.getAddress());// 本地的zookeeper
         config.setRegister(motanRegistry.isRegister());
         config.setSubscribe(motanRegistry.isSubscribe());

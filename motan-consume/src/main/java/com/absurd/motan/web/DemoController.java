@@ -3,6 +3,7 @@ package com.absurd.motan.web;
 import com.absurd.dubbo.api.DemoService;
 import com.absurd.dubbo.api.dto.UserDTO;
 import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
+import com.weibo.api.motan.rpc.RpcContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,10 @@ import java.util.concurrent.Future;
 public class DemoController {
     private static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo")
+    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo1",requestTimeout = 1000)
     private DemoService demo1Service;
 
-    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo")
+    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo2",requestTimeout = 1000)
     private DemoService demo2Service;
 
     @RequestMapping(value={"hello/{user}"})
@@ -40,20 +41,12 @@ public class DemoController {
     @ResponseBody
     public UserDTO getUser(@PathVariable Long id){
         UserDTO userDTO = demo1Service.getUser(id);
-//        ExecutorService executorService = Executors.newFixedThreadPool(1);
-//        Future<UserDTO> future = RpcContext.getContext().getFuture();
-//        executorService.submit(()->{
-//            try {
-//                UserDTO  userDTO1 = future.get();
-//                logger.info(">>>>>>>>>>>>>>>>>>>>"+userDTO1.getUserName());
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (ExecutionException e) {
-//                e.printStackTrace();
-//            }
-//
-//        });
-//        executorService.shutdown();
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+
+        executorService.submit(()->{
+
+        });
+        executorService.shutdown();
 
 
         return userDTO;

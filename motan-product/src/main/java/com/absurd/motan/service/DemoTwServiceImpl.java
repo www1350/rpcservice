@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.Future;
 
 /**
- * Created by wangwenwei on 17/1/4.
+ * Created by wangwenwei on 17/1/6.
  */
-@MotanService(basicService = "basicServiceConfig",group = "demo1")
-public class DemoServiceImpl implements DemoService {
-    private static Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
+@MotanService(basicService = "basicServiceConfig",group = "demo2")
+public class DemoTwServiceImpl implements DemoService {
+    private static Logger logger = LoggerFactory.getLogger(DemoTwServiceImpl.class);
 
     public String sayHello(String name) {
         logger.info("><>><");
@@ -35,5 +35,4 @@ public class DemoServiceImpl implements DemoService {
     public Future<UserDTO> asyncUser(Long id) {
         return null;
     }
-
 }
