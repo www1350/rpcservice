@@ -4,16 +4,19 @@ import com.absurd.motan.config.properties.MotanConsumeConfig;
 import com.absurd.motan.config.properties.MotanProtocol;
 import com.absurd.motan.config.properties.MotanProviderConfig;
 import com.absurd.motan.config.properties.MotanRegistry;
+import com.weibo.api.motan.common.MotanConstants;
 import com.weibo.api.motan.config.ProtocolConfig;
 import com.weibo.api.motan.config.springsupport.AnnotationBean;
 import com.weibo.api.motan.config.springsupport.BasicRefererConfigBean;
 import com.weibo.api.motan.config.springsupport.BasicServiceConfigBean;
 import com.weibo.api.motan.config.springsupport.ProtocolConfigBean;
 import com.weibo.api.motan.config.springsupport.RegistryConfigBean;
+import com.weibo.api.motan.util.MotanSwitcherUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -68,13 +71,14 @@ public class MotanAutoConfiguration {
     public ProtocolConfigBean protocolConfig() {
         ProtocolConfigBean config = new ProtocolConfigBean();
         config.setDefault(motanProtocol.isDefault());
-        config.setId(motanProtocol.getId());
+//        config.setId(motanProtocol.getId());
         config.setName(motanProtocol.getName());// 采用motan协议
         config.setMaxWorkerThread(motanProtocol.getMaxworkerthread());// 最大线程
         config.setMinWorkerThread(motanProtocol.getMinworkerthread());// 最少线程
         config.setMaxContentLength(motanProtocol.getMaxcontentlength());// 内容大小
         config.setHaStrategy(motanProtocol.getHaStrategy());
         config.setLoadbalance(motanProtocol.getLoadbalance());
+        logger.info("[MotanAutoConfiguration] {}", config);
         return config;
     }
 
@@ -92,38 +96,47 @@ public class MotanAutoConfiguration {
         config.setAddress(motanRegistry.getAddress());// 本地的zookeeper
         config.setRegister(motanRegistry.isRegister());
         config.setSubscribe(motanRegistry.isSubscribe());
+        logger.info("[MotanAutoConfiguration] {}", config);
         return config;
     }
 
     @Bean(name = "basicServiceConfig")
-    public BasicServiceConfigBean baseServiceConfig(ProtocolConfig protocol) {
+    public BasicServiceConfigBean baseServiceConfig(@Qualifier("serverMotan") ProtocolConfig protocol,
+                                                    @Qualifier("registryConfig") RegistryConfigBean registryConfigBean) {
         BasicServiceConfigBean config = new BasicServiceConfigBean();
         config.setExport("serverMotan:"+motanProviderConfig.getPort());// 在20880这个端口暴漏
         config.setAccessLog(motanProviderConfig.getAccesslog());
-        config.setRegistry("registryConfig");// 采用上面定义好的
+        config.setRegistry(registryConfigBean);// 采用上面定义好的
         config.setThrowException(motanProviderConfig.getThrowException());
         config.setCheck(motanProviderConfig.getCheck());
         config.setShareChannel(motanProviderConfig.getShareChannel());
         config.setModule(motanProviderConfig.getModule());
+//        config.setDefault(true);
         config.setProtocol(protocol);
         config.setApplication(motanProviderConfig.getApplication());
         config.setGroup(motanProviderConfig.getGroup());
+        logger.info("[MotanAutoConfiguration>] {}", protocol);
+        logger.info("[MotanAutoConfiguration] {}", config);
         return config;
     }
 
 
     @Bean(name = "basicRefererConfig")
-    public BasicRefererConfigBean basicRefererConfig(){
+    public BasicRefererConfigBean basicRefererConfig(@Qualifier("serverMotan") ProtocolConfig protocol,
+                                                     @Qualifier("registryConfig") RegistryConfigBean registryConfigBean){
         BasicRefererConfigBean config = new BasicRefererConfigBean();
         config.setAccessLog(motanConsumeConfig.getAccesslog());
         config.setGroup(motanConsumeConfig.getGroup());
         config.setModule(motanConsumeConfig.getModule());
         config.setThrowException(motanConsumeConfig.getThrowException());
         config.setCheck(motanConsumeConfig.getCheck());
+        config.setDefault(true);
         config.setShareChannel(motanProviderConfig.getShareChannel());
-        config.setProtocol("serverMotan");
+        config.setProtocol(protocol);
         config.setApplication(motanConsumeConfig.getApplication());
-        config.setRegistry("registryConfig");
+        config.setRegistry(registryConfigBean);
+        logger.info("[MotanAutoConfiguration>] {}", protocol);
+        logger.info("[MotanAutoConfiguration] {}", config);
         return config;
     }
 }

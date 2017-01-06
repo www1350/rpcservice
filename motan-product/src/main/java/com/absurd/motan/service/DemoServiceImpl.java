@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 /**
  * Created by wangwenwei on 17/1/4.
  */
-@MotanService(export="serverMotan:20880",basicService = "basicServiceConfig")
+@MotanService(basicService = "basicServiceConfig",group = "demo")
 public class DemoServiceImpl implements DemoService {
     private static Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
 

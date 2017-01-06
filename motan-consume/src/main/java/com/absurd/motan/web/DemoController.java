@@ -24,10 +24,10 @@ import java.util.concurrent.Future;
 public class DemoController {
     private static Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    @MotanReferer(basicReferer = "basicRefererConfig")
+    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo")
     private DemoService demo1Service;
 
-    @MotanReferer(basicReferer = "basicRefererConfig")
+    @MotanReferer(basicReferer = "basicRefererConfig",group = "demo")
     private DemoService demo2Service;
 
     @RequestMapping(value={"hello/{user}"})

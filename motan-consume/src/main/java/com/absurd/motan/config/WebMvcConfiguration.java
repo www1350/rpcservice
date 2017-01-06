@@ -1,4 +1,4 @@
-package com.absurd.motan;
+package com.absurd.motan.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
