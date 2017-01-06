@@ -26,6 +26,8 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
-        MotanSwitcherUtil.setSwitcherValue(MotanConstants.REGISTRY_HEARTBEAT_SWITCHER, true);
+//        MotanSwitcherUtil.setSwitcherValue(MotanConstants.REGISTRY_HEARTBEAT_SWITCHER, true);
     }
+
+
 }

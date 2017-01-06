@@ -32,6 +32,11 @@ public class MotanRegistry {
      */
     private boolean subscribe = true;
 
+    private Integer requestTimeout;
+    private Integer connectTimeout;
+    private Integer registrySessionTimeout;
+    private Integer registryRetryPeriod;
+
     public boolean isDefault() {
         return isDefault;
     }
@@ -78,5 +83,37 @@ public class MotanRegistry {
 
     public void setSubscribe(boolean subscribe) {
         this.subscribe = subscribe;
+    }
+
+    public Integer getRequestTimeout() {
+        return requestTimeout;
+    }
+
+    public void setRequestTimeout(Integer requestTimeout) {
+        this.requestTimeout = requestTimeout;
+    }
+
+    public Integer getConnectTimeout() {
+        return connectTimeout;
+    }
+
+    public void setConnectTimeout(Integer connectTimeout) {
+        this.connectTimeout = connectTimeout;
+    }
+
+    public Integer getRegistrySessionTimeout() {
+        return registrySessionTimeout;
+    }
+
+    public void setRegistrySessionTimeout(Integer registrySessionTimeout) {
+        this.registrySessionTimeout = registrySessionTimeout;
+    }
+
+    public Integer getRegistryRetryPeriod() {
+        return registryRetryPeriod;
+    }
+
+    public void setRegistryRetryPeriod(Integer registryRetryPeriod) {
+        this.registryRetryPeriod = registryRetryPeriod;
     }
 }
