@@ -149,10 +149,10 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>-->
-        <repository>
+<!--        <repository>
             <id>rpcservice-maven-repo</id>
             <url>https://raw.githubusercontent.com/www1350/rpcservice/master/maven-repo/repository</url>
-        </repository>
+        </repository>-->
     </repositories>
 
 </project>
