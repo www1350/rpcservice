@@ -18,6 +18,8 @@
         <module>spring-boot-starter-motan</module>
         <module>motan-product</module>
         <module>motan-consume</module>
+        <module>spring-boot-starter-grpc</module>
+        <module>grpc-product</module>
     </modules>
 
     <parent>
