@@ -1,0 +1,24 @@
+syntax="proto3";
+option java_package = "com.absurd.grpc.pro";
+option java_outer_classname = "User";
+option optimize_for = CODE_SIZE;
+package pro;
+
+service Register {
+  rpc register (UserInfo) returns (RegisterReply) {}
+}
+
+message RegisterReply {
+  string message = 1;
+}
+
+enum UserStatus {
+ACTIVE   = 0;
+UNACTIVE = 1;
+}
+
+message UserInfo{
+  int32         id       = 1;
+  string        userName = 2;
+  UserStatus    status   = 3;
+}
