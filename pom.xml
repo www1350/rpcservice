@@ -160,7 +160,7 @@
     <distributionManagement>
         <repository>
             <id>rpcservice-mvn-repo</id>
-            <url>file:E:/myfork/rpcservice/maven-repo/repository/</url>
+            <url>/Users/wangwenwei/IdeaProjects/rpcservice/maven-repo/repository/</url>
         </repository>
     </distributionManagement>
 

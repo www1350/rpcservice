@@ -1,5 +1,6 @@
 package com.absurd.grpc;
 
+import com.absurd.grpc.config.annotation.EnableGRpcServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @ComponentScan("com.absurd")
 @SpringBootApplication
-//@EnableAutoConfiguration
+@EnableGRpcServer
 @PropertySource("grpc.properties")
 public class Application extends SpringBootServletInitializer {
 
